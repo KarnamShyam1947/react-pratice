@@ -1,7 +1,61 @@
-body {
-    background-color: blanchedalmond;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.logo {
+    color: white;
+    font-size: 30px;
+}
+
+header {
+    background-color: crimson;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 60px;
+}
+
+header ul {
+    list-style: none;
+}
+
+header ul li {
+    display: inline;
+    margin: 0 3px;
+}
+
+header ul li a {
+    color: white;
+    padding: 5px 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+header ul li a:hover {
+    background-color: white;
+    color: crimson;
+    padding: 5px 10px;
 }
 
 h1 {
     text-align: center;
+}
+
+.main {
+    min-height: calc(100vh - 60px - 50px);
+}
+
+footer {
+    height: 50px;
+    background-color: crimson;
+    color: white;
+    text-align: center;
+    display: grid;
+    place-items: center;
 }

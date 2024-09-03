@@ -47,8 +47,22 @@ h1 {
     text-align: center;
 }
 
+
+
 .main {
     min-height: calc(100vh - 60px - 50px);
+    display: grid;
+    place-items: center;
+}
+
+button {
+    background-color: crimson;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    margin-left: 20px;
 }
 
 footer {

@@ -73,3 +73,33 @@ footer {
     display: grid;
     place-items: center;
 }
+
+form {
+    width: 500px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs input,
+.inputs textarea {
+    margin-top: 15px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.inputs textarea {
+    height: 150px;
+}
+
+.tab-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+th, td {
+    padding: 10px;
+}

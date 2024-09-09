@@ -88,6 +88,7 @@ form {
     margin-top: 15px;
     height: 30px;
     padding-left: 10px;
+    border: 1px solid ;
 }
 
 .inputs textarea {
@@ -102,4 +103,12 @@ form {
 
 th, td {
     padding: 10px;
+}
+
+.error {
+    color: red;
+}
+
+.error-field {
+    border-color: red !important;
 }

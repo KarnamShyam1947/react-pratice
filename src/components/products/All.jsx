@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function All() {
+
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    try {
+      const fRes = await fetch("http://localhost:3000/api/v1/products")
+      const res = await fRes.json();
+      console.log(res);
+      setProducts(res);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, [])
+
   return (
     <>
       <div className="products">
@@ -10,33 +29,32 @@ function All() {
           <Link to={"/add"}>Add Products</Link>
         </div>
         <table border={2}>
-          <tr>
-            <th>SL. No.</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Product1</td>
-            <td>120</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, voluptatem!</td>
-            <td>
-              <button>delete</button>
-              <button>edit</button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Product2</td>
-            <td>120</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, voluptatem!</td>
-            <td>
-              <button>delete</button>
-              <button>edit</button>
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th>SL. No.</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+              products.map((value, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{value.name}</td>
+                  <td>{value.price}</td>
+                  <td>{value.description}</td>
+                  <td>
+                    <button>delete</button>
+                    <button>edit</button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
         </table>
       </div>
     </>
@@ -44,3 +62,4 @@ function All() {
 }
 
 export default All
+

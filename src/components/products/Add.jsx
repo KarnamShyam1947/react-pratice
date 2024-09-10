@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function Add() {
   const initialValues = {
@@ -10,6 +11,8 @@ function Add() {
   const [formValues, setFormValues] = useState(initialValues);
   const [error, setError] = useState({});
 
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -18,15 +21,22 @@ function Add() {
     });
   };
 
-  const handleFormSubmission = (e) => {
+  const handleFormSubmission = async (e) => {
     e.preventDefault();
     
     const errors = validateInput();
     
     if (Object.keys(errors).length === 0) {
-      alert('Form submitted successfully!');
-      setFormValues(initialValues);
-      setError({});
+      const result = await addProduct();
+      
+      if(result.error) {
+        alert(result.error);
+      }
+      else {
+        alert(result.message);
+        navigate("/all");
+      }
+
     } else {
       setError(errors);
       alert('Form has errors');
@@ -52,6 +62,22 @@ function Add() {
 
     return errors;
   };
+
+  const addProduct = async () => {
+    const fetchRes = await fetch("http://localhost:3000/api/v1/products",
+      {
+        method: "POST",
+        body: JSON.stringify(formValues),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    const result = await fetchRes.json();
+    
+    return result;
+  }
 
   return (
     <>

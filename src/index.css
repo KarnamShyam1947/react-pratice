@@ -112,3 +112,8 @@ th, td {
 .error-field {
     border-color: red !important;
 }
+
+button a {
+    color: white;
+    text-decoration: none;
+}

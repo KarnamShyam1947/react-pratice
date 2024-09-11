@@ -21,6 +21,24 @@ function All() {
     fetchProducts();
   }, [])
 
+  const deleteProduct = async (productId) => {
+    if(window.confirm("Are u sure u want to delete the product??")) {
+      try {
+        const fRes = await fetch(`http://localhost:3000/api/v1/products/${productId}`,
+          {
+            method: "DELETE"
+          }
+        )
+        const res = await fRes.json();
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+  
+      fetchProducts();
+    }
+  } 
+
   return (
     <>
       <div className="products">
@@ -48,8 +66,12 @@ function All() {
                   <td>{value.price}</td>
                   <td>{value.description}</td>
                   <td>
-                    <button>delete</button>
-                    <button>edit</button>
+                    <button>
+                      <Link to={`/edit/${value.id}`}>Edit</Link>
+                    </button>
+                    <button onClick={() => deleteProduct(value.id)}>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))
